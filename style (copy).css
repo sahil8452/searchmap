@@ -1,0 +1,78 @@
+#map {
+    height: 800px;
+    width: 1500px;
+  }
+  html, body {
+    width:550px;
+    height:550px;
+  }
+
+  .pac-card {
+    margin: 10px 10px 0 0;
+    border-radius: 2px 0 0 2px;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    outline: none;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+    background-color: #fff;
+    font-family: Roboto;
+  }
+
+  #pac-container {
+    padding-bottom: 2px;
+    margin-right: 12px;
+  }
+
+  .pac-controls {
+    display: inline-block;
+    padding: 5px 11px;
+  }
+
+  .pac-controls label {
+    font-family: Roboto;
+    font-size: 13px;
+    font-weight: 300;
+  }
+
+  #pac-input {
+    background-color: #fff;
+    font-family: Roboto;
+    font-size: 15px;
+    font-weight: 300;
+    margin: 12px;
+    padding: 5px 10px;
+    text-overflow: ellipsis;
+    width: 400px;
+    border: #e0e0e0 1px solid;
+  }
+
+  #pac-input:focus {
+    outline: none;
+  }
+
+  #label {
+    color: #fff;
+    background-color: #4d90fe;
+    font-size: 25px;
+    font-weight: 500;
+    padding: 6px 12px;
+  }
+  #pac-card.pac-card{
+    padding: 8px;
+    z-index: 0;
+    position: absolute;
+    align-items: center;
+    left: 105px;
+    top: 30px;
+  }
+  
+  #location-error {
+    display: inline-block;
+    padding: 6px;
+    background: #e4a7a7;
+    border: #d49c9c 1px solid;
+    font-size: 1.3em;
+    color: #333;
+    display:none;
+    margin: 12px;
+  }

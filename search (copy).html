@@ -1,0 +1,84 @@
+<html>
+    <link href="style.css" rel="stylesheet" type="text/css">
+  <body>
+    <div class="pac-card" id="pac-card">
+    <div>
+       <div id="label">
+          Location search
+        </div>  
+      <div id="pac-container">
+        <input id="pac-input" type="text"
+            placeholder="Enter a location"><div id="location-error"></div>
+      </div>
+    </div>
+    <div id="map"></div>
+    <div id="infowindow-content">
+      <img src="" width="16" height="16" id="place-icon">
+      <span id="place-name"  class="title"></span><br>
+      <span id="place-address"></span>
+    </div>
+    <script>
+    function initMap()
+
+
+    {
+    	var centerCoordinates = new google.maps.LatLng(20.5937, 78.9629);
+        var map = new google.maps.Map(document.getElementById('map'), {
+        center: centerCoordinates,
+        zoom: 4
+        });
+        var card = document.getElementById('pac-card');
+        var input = document.getElementById('pac-input');
+        var infowindowContent = document.getElementById('infowindow-content');
+        
+        map.controls[google.maps.ControlPosition.TOP_RIGHT].push(card);
+
+        var autocomplete = new google.maps.places.Autocomplete(input);
+        var infowindow = new google.maps.InfoWindow();
+        infowindow.setContent(infowindowContent);
+        var trafficLayer = new google.maps.TrafficLayer();
+        trafficLayer.setMap(map);
+         var transitLayer = new google.maps.TransitLayer();
+        transitLayer.setMap(map);
+        var bikeLayer = new google.maps.BicyclingLayer();
+        bikeLayer.setMap(map);
+        
+        var marker = new google.maps.Marker({
+          map: map
+        });
+
+        autocomplete.addListener('place_changed', function() {
+ 	        document.getElementById("location-error").style.display = 'none';
+            infowindow.close();
+            marker.setVisible(false);
+        		var place = autocomplete.getPlace();
+        		if (!place.geometry) {
+        		  	document.getElementById("location-error").style.display = 'inline-block';
+        		  	document.getElementById("location-error").innerHTML = "Cannot Locate '" + input.value + "' on map";
+        		    return;
+        		}
+        		
+        		map.fitBounds(place.geometry.viewport);
+        		marker.setPosition(place.geometry.location);
+        		marker.setVisible(true);
+        		    
+        		infowindowContent.children['place-icon'].src = place.icon;
+        		infowindowContent.children['place-name'].textContent = place.name;
+        		infowindowContent.children['place-address'].textContent = input.value;
+        		infowindow.open(map, marker);
+        });
+    }
+    x=navigator.geolocation;
+    x.getcurrentposition(success,failure);
+    function success(postion)
+    {
+        var myLat= position.coords.latitude;
+        var mylong= position.coordes.longitude;
+        var coords=new google.maps.latLng(myLat,mLong);
+        var mapoption
+    }
+    </script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=(ENTER-YPUR-KEY)&libraries=places&callback=initMap"
+        async defer></script>
+  </body>
+</html>
